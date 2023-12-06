@@ -17,5 +17,10 @@ MonoBehaviour:
     Projects:
     - ProjectPath: Needle/CollaborativeSandbox
     BuilderScene: 
+  - Path: Assets/ConventionApp/Scenes/Convention Center.unity
+    Projects:
+    - ProjectPath: Needle/Convention Center
+    BuilderScene: 
   Projects:
   - ProjectPath: Needle/CollaborativeSandbox
+  - ProjectPath: Needle/Convention Center
