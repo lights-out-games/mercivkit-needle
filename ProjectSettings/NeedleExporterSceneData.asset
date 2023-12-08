@@ -14,13 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Scenes:
   - Path: Assets/Scenes/CollaborativeSandbox.unity
-    Projects:
-    - ProjectPath: Needle/CollaborativeSandbox
+    Projects: []
     BuilderScene: 
   - Path: Assets/ConventionApp/Scenes/Convention Center.unity
     Projects:
     - ProjectPath: Needle/Convention Center
     BuilderScene: 
   Projects:
-  - ProjectPath: Needle/CollaborativeSandbox
   - ProjectPath: Needle/Convention Center
