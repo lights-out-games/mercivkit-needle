@@ -1,26 +1,11 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Fusion;
 
 namespace MercivKit
 {
-    public class PlayerController : MonoBehaviour, MercivInputActions.IPlayerActions
+    public class PlayerController : NetworkBehaviour, MercivInputActions.IPlayerActions
     {
-        [SerializeField]
-        private Animator _animator;
-        public Animator Animator
-        {
-            get => _animator;
-            set => _animator = value;
-        }
-
-        [SerializeField]
-        private Camera _camera;
-        public Camera Camera
-        {
-            get => _camera;
-            set => _camera = value;
-        }
-
         [SerializeField]
         private float _moveSpeed = 5f;
         public float MoveSpeed
@@ -30,11 +15,11 @@ namespace MercivKit
         }
 
         [SerializeField]
-        private float _cameraSpeed = 1f;
-        public float CameraSpeed
+        private float _rotateSpeed = 1f;
+        public float RotateSpeed
         {
-            get => _cameraSpeed;
-            set => _cameraSpeed = value;
+            get => _rotateSpeed;
+            set => _rotateSpeed = value;
         }
 
         [SerializeField]
@@ -46,18 +31,15 @@ namespace MercivKit
         }
 
         private Vector2 _moveInput;
-        private CharacterController _characterController;
         private MercivInputActions _inputActions;
-        private float _pitch;
-        private float _yaw;
+        private CharacterController _characterController;
         private float _fallSpeed;
 
         private void Awake()
         {
-            _characterController = GetComponent<CharacterController>();
             _inputActions = new MercivInputActions();
             _inputActions.Player.SetCallbacks(this);
-            _camera.transform.rotation = Quaternion.identity;
+            _characterController = GetComponent<CharacterController>();
         }
 
         private void OnEnable()
@@ -75,35 +57,28 @@ namespace MercivKit
             _moveInput = context.ReadValue<Vector2>();
         }
 
-        public void OnLook(InputAction.CallbackContext context)
-        {
-            var lookInput = context.ReadValue<Vector2>();
-            _pitch += -lookInput.y * _cameraSpeed;
-            _yaw += lookInput.x * _cameraSpeed;
-            _pitch = Mathf.Clamp(_pitch, -10, 70f);
-        }
+        public void OnLook(InputAction.CallbackContext context) {}
+        public void OnFire(InputAction.CallbackContext context) {}
 
-        public void OnFire(InputAction.CallbackContext context)
+        public override void FixedUpdateNetwork()
         {
-        }
-
-        private void Update()
-        {
-            _characterController.Move(transform.forward * _moveInput.y * _moveSpeed * Time.deltaTime);
-            _characterController.Move(Vector3.down * _gravity * Time.deltaTime);
+            if (!HasStateAuthority)
+            {
+                return;
+            }
 
             if (!_characterController.isGrounded)
             {
-                _fallSpeed += _gravity * Time.deltaTime;
-                _fallSpeed = Mathf.Min(_fallSpeed, 20f);
-                _characterController.Move(Vector3.down * _fallSpeed * Time.deltaTime);
+                _fallSpeed += _gravity * Runner.DeltaTime;
+                _characterController.Move(Vector3.down * _fallSpeed * Runner.DeltaTime);
+            }
+            else
+            {
+                _fallSpeed = 0;
             }
 
-            transform.Rotate(Vector3.up, _moveInput.x);
-            _animator.SetFloat("MoveSpeed", Mathf.Abs(_moveInput.y));
-
-            _camera.transform.rotation = Quaternion.Euler(_pitch, _yaw, 0f);
-            _camera.transform.position = transform.position - _camera.transform.forward * 3f + Vector3.up * 2f;
+            _characterController.Move(transform.forward * _moveInput.y * _moveSpeed * Runner.DeltaTime);
+            transform.Rotate(Vector3.up, _moveInput.x * _rotateSpeed * Runner.DeltaTime * 100);
         }
     }
 }

@@ -1,9 +1,8 @@
 {
-    "name": "MercivKit.Runtime",
+    "name": "Fusion",
     "rootNamespace": "",
     "references": [
-        "Unity.InputSystem",
-        "Fusion"
+        "Fusion.Editor"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
