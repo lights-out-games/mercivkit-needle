@@ -21,7 +21,7 @@ namespace MercivKit
 
         void Update()
         {
-            _animator.SetFloat("MoveSpeed", Mathf.Abs(_characterController.velocity.magnitude));
+            // _animator.SetFloat("MoveSpeed", Mathf.Abs(_characterController.velocity.magnitude));
         }
     }
 }

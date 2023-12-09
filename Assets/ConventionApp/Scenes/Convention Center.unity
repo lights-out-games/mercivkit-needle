@@ -521,7 +521,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerPrefab: {fileID: 8341024741384526990, guid: a2834e6d54756ba4f9cb1b5c35aef4d8, type: 3}
-  _camera: {fileID: 1823688473}
 --- !u!1 &318702729
 GameObject:
   m_ObjectHideFlags: 0
@@ -1315,7 +1314,7 @@ MonoBehaviour:
   StartMode: 0
   AutoStartAs: 2
   AutoHideGUI: 1
-  AutoClients: 1
+  AutoClients: 2
   ServerPort: 27015
   DefaultRoomName: 
   AlwaysShowStats: 0

@@ -30,16 +30,40 @@ namespace MercivKit
             set => _gravity = value;
         }
 
+        [SerializeField]
+        private Animator _animator;
+        public Animator Animator
+        {
+            get => _animator;
+            set => _animator = value;
+        }
+
         private Vector2 _moveInput;
         private MercivInputActions _inputActions;
         private CharacterController _characterController;
         private float _fallSpeed;
+
+        [Networked]
+        public Vector3 Velocity { get; set; }
 
         private void Awake()
         {
             _inputActions = new MercivInputActions();
             _inputActions.Player.SetCallbacks(this);
             _characterController = GetComponent<CharacterController>();
+        }
+
+        public override void Spawned()
+        {
+            if (HasStateAuthority)
+            {
+                Camera.main.GetComponent<CameraController>().target = GetComponent<NetworkTransform>().InterpolationTarget;
+                GetComponent<NetworkTransform>().InterpolationDataSource = InterpolationDataSources.NoInterpolation;
+            }
+            else
+            {
+                GetComponent<NetworkTransform>().InterpolationDataSource = InterpolationDataSources.Auto;
+            }
         }
 
         private void OnEnable()
@@ -77,8 +101,16 @@ namespace MercivKit
                 _fallSpeed = 0;
             }
 
+            var previousPos = transform.position;
             _characterController.Move(transform.forward * _moveInput.y * _moveSpeed * Runner.DeltaTime);
             transform.Rotate(Vector3.up, _moveInput.x * _rotateSpeed * Runner.DeltaTime * 100);
+            Velocity = (transform.position - previousPos) * Runner.Simulation.Config.TickRate;
+        }
+
+        public override void Render()
+        {
+            var xzSpeed = new Vector2(Velocity.x, Velocity.z).magnitude;
+            _animator.SetFloat("MoveSpeed", xzSpeed);
         }
     }
 }
