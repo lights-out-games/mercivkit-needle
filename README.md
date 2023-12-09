@@ -45,10 +45,24 @@ cd web/
 npm start
 ```
 
-## Release
+## Publish
 - To build the static web app
 ```bash
 cd web/
 npm run build
 ```
 - It'll output the directory you need to host into the "Build" folder
+
+
+### Publish to Firebase Hosting
+Firebase hosting 
+(Dashboard)[https://console.firebase.google.com/project/mercivkit/hosting/sites/mercivkit]
+Domains: 
+- (mercivkit.web.app)[https://mercivkit.web.app/]
+- mercivkit.firebaseapp.com[https://mercivkit.firebaseapp.com/]
+
+```bash
+firebase login
+
+firebase deploy
+```
