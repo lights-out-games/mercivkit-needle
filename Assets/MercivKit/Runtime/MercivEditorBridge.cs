@@ -5,7 +5,7 @@ namespace MercivKit
 {
     internal class MercivEditorBridge : MercivBridgeTransport
     {
-        private ConcurrentQueue<string> _receiveQueue;
+        private ConcurrentQueue<string> _receiveQueue = new ConcurrentQueue<string>();
         public ConcurrentQueue<string> ReceiveQueue => _receiveQueue;
 
         public void SendMessage(string message)

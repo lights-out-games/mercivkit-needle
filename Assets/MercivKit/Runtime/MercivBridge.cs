@@ -50,10 +50,18 @@ namespace MercivKit
         private void Awake()
         {
             _instance = this;
+            transform.SetParent(null);
             DontDestroyOnLoad(gameObject);
 
 #if UNITY_WEBGL
-            _bridge = new MercivJavaScriptBridge();
+            if (Application.isEditor)
+            {
+                _bridge = new MercivEditorBridge();
+            }
+            else
+            {
+                _bridge = new MercivJavaScriptBridge();
+            }
 #else
             _bridge = new MercivEditorBridge();
 #endif
