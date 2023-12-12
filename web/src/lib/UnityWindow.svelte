@@ -1,9 +1,15 @@
 <script lang="ts">
-    import { onMount } from "svelte";
+	import unity from "./MercivUnityBridge";
+
+    let iframe: HTMLIFrameElement;
+
+    $: if (iframe) {
+        unity.setUnityWindow(iframe.contentWindow!);
+    }
 </script>
 
 <div class="absolute inset-0 bg-red-500">
-    <iframe id="unity-iframe" src="/WebGL/index.html" title="Unity App"></iframe>
+    <iframe bind:this={iframe} id="unity-iframe" src="/WebGL/index.html" title="Unity App"></iframe>
 </div>
 
 <style>
