@@ -38,6 +38,14 @@ namespace MercivKit
             set => _animator = value;
         }
 
+        [SerializeField]
+        private Transform _cameraTarget;
+        public Transform CameraTarget
+        {
+            get => _cameraTarget;
+            set => _cameraTarget = value;
+        }
+
         private Vector2 _moveInput;
         private MercivInputActions _inputActions;
         private CharacterController _characterController;
@@ -57,8 +65,8 @@ namespace MercivKit
         {
             if (HasStateAuthority)
             {
-                Camera.main.GetComponent<CameraController>().target = GetComponent<NetworkTransform>().InterpolationTarget;
                 GetComponent<NetworkTransform>().InterpolationDataSource = InterpolationDataSources.NoInterpolation;
+                ServiceLocator.GetService<CameraService>().SetFollowTarget(_cameraTarget);
             }
             else
             {

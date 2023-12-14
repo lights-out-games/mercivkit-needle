@@ -13,11 +13,16 @@ namespace MercivKit
             set => _playerPrefab = value;
         }
 
+        void Awake()
+        {
+            transform.GetChild(0).gameObject.SetActive(false);
+        }
+
         public void PlayerJoined(PlayerRef player)
         {
             if (player == Runner.LocalPlayer)
             {
-                Runner.Spawn(PlayerPrefab, new Vector3(0, 1, 0), Quaternion.identity, player);
+                Runner.Spawn(PlayerPrefab, transform.position, transform.rotation);
             }
         }
     }

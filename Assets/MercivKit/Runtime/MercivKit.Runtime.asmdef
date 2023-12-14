@@ -5,7 +5,8 @@
         "Unity.InputSystem",
         "Fusion",
         "Unity.XR.Management",
-        "Unity.XR.Interaction.Toolkit"
+        "Unity.XR.Interaction.Toolkit",
+        "Cinemachine"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
