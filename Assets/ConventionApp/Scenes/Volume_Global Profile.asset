@@ -13,45 +13,34 @@ MonoBehaviour:
   m_Name: Bloom
   m_EditorClassIdentifier: 
   active: 1
-  m_AdvancedMode: 0
   threshold:
     m_OverrideState: 1
     m_Value: 0.9
-    min: 0
   intensity:
     m_OverrideState: 1
     m_Value: 8.49
-    min: 0
   scatter:
     m_OverrideState: 1
     m_Value: 0.248
-    min: 0
-    max: 1
   clamp:
     m_OverrideState: 0
     m_Value: 65472
-    min: 0
   tint:
     m_OverrideState: 1
     m_Value: {r: 0.5613208, g: 0.8084144, b: 1, a: 1}
-    hdr: 0
-    showAlpha: 0
-    showEyeDropper: 1
   highQualityFiltering:
     m_OverrideState: 0
     m_Value: 0
   skipIterations:
     m_OverrideState: 0
     m_Value: 1
-    min: 0
-    max: 16
   dirtTexture:
     m_OverrideState: 0
     m_Value: {fileID: 0}
+    dimension: 1
   dirtIntensity:
     m_OverrideState: 0
     m_Value: 0
-    min: 0
 --- !u!114 &-821796039592139559
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -65,7 +54,6 @@ MonoBehaviour:
   m_Name: ShadowsMidtonesHighlights
   m_EditorClassIdentifier: 
   active: 1
-  m_AdvancedMode: 0
   shadows:
     m_OverrideState: 0
     m_Value: {x: 1, y: 1, z: 1, w: 0}
@@ -78,19 +66,15 @@ MonoBehaviour:
   shadowsStart:
     m_OverrideState: 0
     m_Value: 0
-    min: 0
   shadowsEnd:
     m_OverrideState: 0
     m_Value: 0.3
-    min: 0
   highlightsStart:
     m_OverrideState: 0
     m_Value: 0.55
-    min: 0
   highlightsEnd:
     m_OverrideState: 0
     m_Value: 1
-    min: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,14 +103,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5485954d14dfb9a4c8ead8edb0ded5b1, type: 3}
   m_Name: LiftGammaGain
   m_EditorClassIdentifier: 
-  active: 1
-  m_AdvancedMode: 0
+  active: 0
   lift:
     m_OverrideState: 1
-    m_Value: {x: 0.7643752, y: 0.84955, z: 1, w: 0.010015022}
+    m_Value: {x: 0.9993221, y: 1, z: 0.98934877, w: 0.010015022}
   gamma:
     m_OverrideState: 1
-    m_Value: {x: 0.94462323, y: 0.98913866, z: 1, w: -0.07010516}
+    m_Value: {x: 0.96015906, y: 1, z: 0.9861631, w: -0.07010516}
   gain:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: 0.14021038}
+    m_Value: {x: 0.9971704, y: 1, z: 1, w: 0.14021038}
