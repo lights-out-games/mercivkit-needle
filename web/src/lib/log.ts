@@ -1,4 +1,5 @@
-const VERBOSE_LOG = false
+// const VERBOSE_LOG = false
+const VERBOSE_LOG = true
 
 class Log {
     public verbose(...args: any[]) {

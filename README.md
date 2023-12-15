@@ -45,6 +45,17 @@ cd web/
 npm start
 ```
 
+### Local bridge Unity<>browser JS
+
+To avoid making a WebGL build to test interactions between svelte web app and Unity instance, run a local websocket server
+https://github.com/endel/NativeWebSocket
+```bash
+cd NodeServer
+npm install 
+npm start
+```
+
+
 ## Publish
 - To build the static web app
 ```bash
